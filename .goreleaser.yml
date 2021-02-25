@@ -15,7 +15,7 @@ builds:
       - amd64
 
   - binary: autotag
-    id: linux
+    id: linux_amd64
     main: autotag/main.go
     ldflags:
       - -s -w -X main.version={{.Version}}+{{.ShortCommit}}
@@ -24,7 +24,17 @@ builds:
     goarch:
       - amd64
 
-  # TODO: verify windows functionality then enable windows release binaries
+  - binary: autotag
+    id: linux_arm64
+    main: autotag/main.go
+    ldflags:
+      - -s -w -X main.version={{.Version}}+{{.ShortCommit}}
+    goos:
+      - linux
+    goarch:
+      - arm64
+  
+    # TODO: verify windows functionality then enable windows release binaries
   # - binary: autotag
   #   id: windows
   #   main: autotag/main.go
